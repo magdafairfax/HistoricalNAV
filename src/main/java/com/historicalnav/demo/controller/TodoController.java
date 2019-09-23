@@ -16,7 +16,7 @@ import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@RestController
+@Controller("todo")
 public class TodoController {
     @Autowired
     TodoService service;

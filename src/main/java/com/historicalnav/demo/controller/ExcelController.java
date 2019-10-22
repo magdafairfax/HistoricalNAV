@@ -2,8 +2,11 @@ package com.historicalnav.demo.controller;
 
 import com.historicalnav.demo.excel.ExcelPOIHelper;
 import com.historicalnav.demo.excel.MyCell;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,6 +25,22 @@ public class ExcelController {
 
     @Resource(name = "excelPOIHelper")
     private ExcelPOIHelper excelPOIHelper;
+
+    @RequestMapping(value = "/excel", method = RequestMethod.GET)
+    public String showExcel(ModelMap model) {
+        String name = getLoggedInUserName(model);
+        return "excel";
+    }
+    private String getLoggedInUserName(ModelMap model) {
+        Object principal = SecurityContextHolder.getContext()
+                .getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            return ((UserDetails) principal).getUsername();
+        }
+
+        return principal.toString();
+    }
 
     @RequestMapping(method = RequestMethod.GET, value = "/excelProcessing")
     public String getExcelProcessingPage() {

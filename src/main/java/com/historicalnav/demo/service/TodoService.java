@@ -14,10 +14,11 @@ public class TodoService {
     private static int todoCount = 3;
 
     static {
-        todos.add(new Todo(1, "magda", "Ability to upload excel files  ", new Date(),
+        todos.add(new Todo(1, "magda", "Upload excel files.", new Date(),
                 false));
-        todos.add(new Todo(2, "magda", "Ability to analyse the data inputed on the excel file", new Date(), false));
-        todos.add(new Todo(3, "magda", "Ability to compare two prices of information together", new Date(),
+        todos.add(new Todo(2, "magda", "Analyse the data in an excel file.", new Date(),
+                false));
+        todos.add(new Todo(3, "magda", "Create a chart.", new Date(),
                 false));
     }
 
